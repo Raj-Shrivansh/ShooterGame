@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Siege</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="app">
+    <section id="game-shell" class="game-shell" aria-live="polite">
+      <canvas id="game-canvas" width="1280" height="720"></canvas>
+      <div id="floating-layer" class="floating-layer"></div>
+
+      <div id="hud" class="hud hidden">
+        <div class="hud-pill">
+          <span>Score</span>
+          <strong id="score-value">0</strong>
+        </div>
+        <div class="hud-pill">
+          <span>Wave</span>
+          <strong id="wave-value">1</strong>
+        </div>
+        <div class="hud-health">
+          <span>Health</span>
+          <div class="health-bar">
+            <div id="health-fill" class="health-fill"></div>
+          </div>
+          <strong id="health-text">100 / 100</strong>
+        </div>
+        <button id="pause-btn" class="ghost-btn" aria-label="Pause game">Pause</button>
+      </div>
+
+      <section id="start-screen" class="screen">
+        <div class="panel">
+          <p class="eyebrow">Browser Shooter</p>
+          <h1>Neon Siege</h1>
+          <p class="subtitle">Survive escalating waves, outmaneuver threats, and keep your score climbing.</p>
+          <ul class="instructions">
+            <li><kbd>WASD</kbd> or <kbd>Arrow Keys</kbd> to move</li>
+            <li>Move mouse to aim, press <kbd>Space</kbd> to shoot</li>
+            <li><kbd>P</kbd> or <kbd>Esc</kbd> to pause</li>
+            <li><kbd>Enter</kbd> to start or restart</li>
+          </ul>
+          <div class="actions">
+            <button id="start-btn" class="primary-btn">Start Game</button>
+            <button id="open-settings-btn" class="ghost-btn">Settings</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="pause-screen" class="screen hidden">
+        <div class="panel panel-compact">
+          <p class="eyebrow">Paused</p>
+          <h2>Game Paused</h2>
+          <div class="actions">
+            <button id="resume-btn" class="primary-btn">Resume</button>
+            <button id="pause-settings-btn" class="ghost-btn">Settings</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="gameover-screen" class="screen hidden">
+        <div class="panel panel-compact">
+          <p class="eyebrow">Mission Failed</p>
+          <h2>Game Over</h2>
+          <p class="score-line">Final Score: <strong id="final-score">0</strong></p>
+          <p class="score-line">Best Score: <strong id="best-score">0</strong></p>
+          <div class="actions">
+            <button id="restart-btn" class="primary-btn">Restart</button>
+            <button id="gameover-settings-btn" class="ghost-btn">Settings</button>
+          </div>
+        </div>
+      </section>
+
+      <aside id="settings-panel" class="settings hidden" aria-label="Game settings">
+        <header>
+          <h3>Settings</h3>
+          <button id="close-settings-btn" class="icon-btn" aria-label="Close settings">✕</button>
+        </header>
+        <label class="toggle">
+          <span>Sound Effects</span>
+          <input id="sound-toggle" type="checkbox" checked />
+        </label>
+        <label class="toggle">
+          <span>Screen Shake</span>
+          <input id="shake-toggle" type="checkbox" checked />
+        </label>
+      </aside>
+    </section>
+  </main>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
