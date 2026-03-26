@@ -1,12 +1,17 @@
 FROM nginx:1.27-alpine
 
-# Serve the game as static files
+# Railway provides PORT at runtime; nginx template renders it on startup.
+ENV NGINX_ENTRYPOINT_WORKER_PROCESSES_AUTOTUNE=0
+ENV PORT=8080
+
 WORKDIR /usr/share/nginx/html
-COPY . .
 
-# Optional hardening: ensure default nginx index is replaced by project files
-RUN rm -f /usr/share/nginx/html/50x.html
+# Copy only static site assets.
+COPY index.html ./
+COPY style.css ./
+COPY js ./js
 
-EXPOSE 80
+# Provide an nginx config template that binds to ${PORT}.
+COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 8080
